@@ -1,0 +1,5 @@
+# Replace this with your real Azure subscription ID.
+subscription_id = "00000000-0000-0000-0000-000000000000"
+
+# Azure region where the resources will be created.
+location = "swedencentral"
