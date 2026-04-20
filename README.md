@@ -4,13 +4,18 @@ Squadbuilder is an app for creating squads, lineups and team-related data.
 
 ## Project Structure
 
-- `frontend/` user-facing app
-- `backend/` API and server-side code
-- `shared/` shared code between frontend and backend
-- `infrastructure/` Azure infrastructure with Terraform
-- `scripts/` helper scripts
-- `docs/` project documentation
+```text
+squadbuilder/
+  src/              Next.js app source code
+  public/           Static assets
+  infrastructure/   Azure infrastructure with Terraform
+  scripts/          Local automation scripts
+  docs/             Project documentation and ADRs
+```
 
+## Development
+
+See [docs/commands.md](docs/commands.md).
 
 ## Branch Protection
 
