@@ -1,4 +1,42 @@
-# Local contributor/agent instructions
+# Local project files
 AGENTS.md
 AGENTS.MD
-stuff
+stuff/
+
+# Root Next.js app
+node_modules/
+.next/
+out/
+build/
+next-env.d.ts
+*.tsbuildinfo
+package-debug.log
+
+# Root environment files
+.env*
+!.env.example
+
+# Infrastructure and Terraform
+infrastructure/**/.terraform/
+infrastructure/**/*.tfstate
+infrastructure/**/*.tfstate.*
+infrastructure/**/*.tfplan
+infrastructure/**/crash.log
+infrastructure/**/crash.*.log
+infrastructure/**/terraform.tfvars
+infrastructure/**/terraform.tfvars.json
+infrastructure/**/*.auto.tfvars
+infrastructure/**/*.auto.tfvars.json
+
+# Scripts
+scripts/*.log
+
+# Docs
+docs/**/*.tmp
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
