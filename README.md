@@ -17,3 +17,7 @@ Squadbuilder is an app for creating squads, lineups and team-related data.
 The `main` and `dev` branches are protected with GitHub rulesets.
 
 See [docs/branch-protection.md](docs/branch-protection.md).
+
+## Architecture Decisions
+
+Architecture Decision Records are stored in [docs/adr](docs/adr).
