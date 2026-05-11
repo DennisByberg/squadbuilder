@@ -5,9 +5,17 @@ import { GoogleIcon } from "@/components/icons/GoogleIcon";
 import { NavLink } from "@/components/navigation/NavLink";
 import { HomeIcon, MenuIcon, UsersIcon, XIcon } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+const navLinks = [
+  { href: "/", label: "Home", icon: <HomeIcon size={16} /> },
+  { href: "/squads", label: "Squads", icon: <UsersIcon size={16} /> },
+];
+
 export function Header() {
+  // --- State ---
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuIcon = isMenuOpen ? (
@@ -18,6 +26,7 @@ export function Header() {
 
   return (
     <header className="border-b border-border bg-background">
+      {/* --- Top bar --- */}
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 p-4">
         <Link href="/" className="flex items-center gap-3">
           <span className="text-xl font-semibold">Squadbuilder</span>
@@ -25,7 +34,9 @@ export function Header() {
 
         <button
           type="button"
-          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-label={
+            isMenuOpen ? "Close navigation menu" : "Open navigation menu"
+          }
           aria-expanded={isMenuOpen}
           aria-controls="mobile-navigation"
           onClick={() => setIsMenuOpen((current) => !current)}
@@ -34,37 +45,50 @@ export function Header() {
           {menuIcon}
         </button>
 
+        {/* --- Desktop navigation --- */}
         <div className="hidden flex-wrap items-center gap-3 md:flex">
           <nav aria-label="Main navigation" className="flex gap-2">
-            <NavLink href="/" active icon={<HomeIcon size={16} />}>
-              Home
-            </NavLink>
-            <NavLink href="/squads" icon={<UsersIcon size={16} />}>
-              Squads
-            </NavLink>
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.href}
+                href={link.href}
+                active={pathname === link.href}
+                icon={link.icon}
+              >
+                {link.label}
+              </NavLink>
+            ))}
           </nav>
 
-          <Button icon={<GoogleIcon />}>
-            Sign in with Google
-          </Button>
+          <Button icon={<GoogleIcon />}>Sign in with Google</Button>
         </div>
       </div>
 
+      {/* --- Mobile navigation --- */}
       {isMenuOpen ? (
-        <div id="mobile-navigation" className="border-t border-border md:hidden">
+        <div
+          id="mobile-navigation"
+          className="border-t border-border md:hidden"
+        >
           <div className="mx-auto flex max-w-7xl flex-col gap-3 p-4">
-            <nav aria-label="Mobile navigation" className="flex flex-col gap-2">
-              <NavLink href="/" active icon={<HomeIcon size={16} />}>
-                Home
-              </NavLink>
-              <NavLink href="/squads" icon={<UsersIcon size={16} />}>
-                Squads
-              </NavLink>
+            <nav
+              aria-label="Mobile navigation"
+              className="flex flex-col gap-2"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.href}
+                  href={link.href}
+                  active={pathname === link.href}
+                  icon={link.icon}
+                >
+                  {link.label}
+                </NavLink>
+              ))}
             </nav>
 
-            <Button icon={<GoogleIcon />}>
-              Sign in with Google
-            </Button>
+            <Button icon={<GoogleIcon />}>Sign in with Google</Button>
           </div>
         </div>
       ) : null}
