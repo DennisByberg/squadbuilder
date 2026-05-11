@@ -1,9 +1,7 @@
-import { Header } from "@/components/Header";
-
-export default function Home() {
+export default function HomePage() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      <Header />
+    <main>
+      <p>HomePage</p>
     </main>
   );
 }

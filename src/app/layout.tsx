@@ -1,3 +1,4 @@
+import { Header } from "@/components/Header";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -19,7 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className={`${inter.className} min-h-full flex flex-col`}>
-        {children}
+        <Header />
+        <div className="mx-auto w-full max-w-7xl flex-1 p-4">
+          {children}
+        </div>
       </body>
     </html>
   );
