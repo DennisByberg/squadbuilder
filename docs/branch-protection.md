@@ -22,7 +22,17 @@ The enabled rules are:
 - `Restrict deletions`
 - `Block force pushes`
 - `Require a pull request before merging`
+- `Require status checks to pass` — the `Frontend Linting` workflow must pass before merging
+
+## Required Status Checks
+
+The `Frontend Linting` workflow (`.github/workflows/frontend-lint.yml`) runs two parallel jobs on every pull request targeting `main` or `dev`:
+
+- **Lint & Type Check** — runs ESLint and TypeScript type checking
+- **Build** — verifies the app compiles successfully for production
+
+Both jobs must pass before a pull request can be merged.
 
 ## What This Means
 
-In practice, `main` and `dev` should not be deleted, rewritten with force push or updated directly. Changes should go through a pull request so the history stays clear and easier to follow.
+In practice, `main` and `dev` should not be deleted, rewritten with force push or updated directly. Changes should go through a pull request so the history stays clear and easier to follow. A pull request cannot be merged if linting, type checking, or the production build fails.
