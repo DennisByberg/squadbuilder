@@ -1,16 +1,18 @@
 "use client";
 
-import { Button } from "@/components/buttons/Button";
-import { LinkButton } from "@/components/buttons/LinkButton";
+import { Button } from "@/components/ui/button";
 import { GoogleIcon } from "@/components/icons/GoogleIcon";
-import { HomeIcon, MenuIcon, UsersIcon, XIcon } from "lucide-react";
+import { HouseIcon } from "@/components/icons/HouseIcon";
+import { MenuIcon } from "@/components/icons/MenuIcon";
+import { UsersIcon } from "@/components/icons/UsersIcon";
+import { XIcon } from "@/components/icons/XIcon";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const navLinks = [
-  { href: "/", label: "Home", icon: <HomeIcon size={16} /> },
+  { href: "/", label: "Home", icon: <HouseIcon size={16} /> },
   { href: "/squads", label: "Squads", icon: <UsersIcon size={16} /> },
 ];
 
@@ -24,7 +26,7 @@ export function Header() {
   );
 
   return (
-    <header className="border-b border-border bg-background">
+    <header className="bg-background">
       {/* --- Top bar --- */}
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 p-4">
         <Link href="/" className="flex items-center gap-3">
@@ -53,50 +55,64 @@ export function Header() {
         <div className="hidden flex-wrap items-center gap-3 md:flex">
           <nav aria-label="Main navigation" className="flex gap-2">
             {navLinks.map((link) => (
-              <LinkButton
+              <Link
                 key={link.href}
                 href={link.href}
-                variant="nav"
-                active={pathname === link.href}
-                icon={link.icon}
+                aria-current={pathname === link.href ? "page" : undefined}
+                className={`inline-flex items-center gap-2 px-3 py-2 text-sm font-medium transition-colors ${
+                  pathname === link.href
+                    ? "bg-surface text-foreground"
+                    : "text-muted hover:bg-surface hover:text-foreground"
+                }`}
               >
+                {link.icon}
                 {link.label}
-              </LinkButton>
+              </Link>
             ))}
           </nav>
 
-          <Button icon={<GoogleIcon />}>Sign in with Google</Button>
+          <Button variant="outline">
+            <GoogleIcon />
+            Sign in with Google
+          </Button>
         </div>
       </div>
 
       {/* --- Mobile navigation --- */}
-      {isMenuOpen ? (
-        <div
-          id="mobile-navigation"
-          className="fixed inset-0 top-18.25 z-50 flex flex-col items-center justify-center gap-8 bg-background md:hidden"
+      <div
+        id="mobile-navigation"
+        aria-hidden={!isMenuOpen}
+        className={`fixed inset-0 top-18.25 z-50 flex flex-col items-center justify-center gap-8 bg-background transition-opacity duration-200 md:hidden ${
+          isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      >
+        <nav
+          aria-label="Mobile navigation"
+          className="flex w-full flex-col gap-2"
+          onClick={() => setIsMenuOpen(false)}
         >
-          <nav
-            aria-label="Mobile navigation"
-            className="flex w-full flex-col gap-2"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            {navLinks.map((link) => (
-              <LinkButton
-                key={link.href}
-                href={link.href}
-                variant="nav"
-                active={pathname === link.href}
-                icon={link.icon}
-                className="w-full justify-center py-4 text-lg"
-              >
-                {link.label}
-              </LinkButton>
-            ))}
-          </nav>
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              aria-current={pathname === link.href ? "page" : undefined}
+              className={`inline-flex w-full items-center justify-center gap-2 px-3 py-4 text-lg font-medium transition-colors ${
+                pathname === link.href
+                  ? "bg-surface text-foreground"
+                  : "text-muted hover:bg-surface hover:text-foreground"
+              }`}
+            >
+              {link.icon}
+              {link.label}
+            </Link>
+          ))}
+        </nav>
 
-          <Button icon={<GoogleIcon />}>Sign in with Google</Button>
-        </div>
-      ) : null}
+        <Button variant="outline">
+          <GoogleIcon />
+          Sign in with Google
+        </Button>
+      </div>
     </header>
   );
 }

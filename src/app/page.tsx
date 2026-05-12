@@ -1,10 +1,11 @@
-import { LinkButton } from "@/components/buttons/LinkButton";
-import { ArrowRightIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ArrowRightIcon } from "@/components/icons/ArrowRightIcon";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-8 text-center">
+    <div className="flex flex-1 flex-col items-center justify-center gap-8 text-center">
       <div className="flex flex-col items-center gap-3">
         <Image
           src="/squad-builder-logo-text.png"
@@ -17,9 +18,14 @@ export default function HomePage() {
         />
       </div>
 
-      <LinkButton href="/squads" icon={<ArrowRightIcon size={16} />}>
+      <Button
+        variant="outline"
+        nativeButton={false}
+        render={<Link href="/squads" />}
+      >
         Get started
-      </LinkButton>
-    </main>
+        <ArrowRightIcon size={16} />
+      </Button>
+    </div>
   );
 }
