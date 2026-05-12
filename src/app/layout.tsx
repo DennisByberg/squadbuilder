@@ -1,14 +1,19 @@
 import { Header } from "@/components/Header";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Bebas_Neue, Geist } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+
+export const bebasNeue = Bebas_Neue({
+  weight: "400",
   subsets: ["latin"],
+  variable: "--font-bebas-neue",
 });
 
 export const metadata: Metadata = {
-  title: "Squadbuilder",
+  title: "SquadBuilder",
   description: "Create squads and plan lineups.",
 };
 
@@ -18,12 +23,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className={`${inter.className} min-h-full flex flex-col`}>
+    <html lang="en" className={cn("dark h-full antialiased", geist.variable)}>
+      <body className={cn(bebasNeue.variable, "font-sans min-h-full flex flex-col")}>
+        {/* Header */}
         <Header />
-        <div className="mx-auto w-full max-w-7xl flex-1 p-4">
-          {children}
-        </div>
+        {/* Page content */}
+        <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col p-4">{children}</main>
       </body>
     </html>
   );
