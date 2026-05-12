@@ -4,6 +4,7 @@ import { Button } from "@/components/buttons/Button";
 import { GoogleIcon } from "@/components/icons/GoogleIcon";
 import { NavLink } from "@/components/navigation/NavLink";
 import { HomeIcon, MenuIcon, UsersIcon, XIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -14,10 +15,8 @@ const navLinks = [
 ];
 
 export function Header() {
-  // --- State ---
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const menuIcon = isMenuOpen ? (
     <XIcon size={20} aria-hidden="true" />
   ) : (
@@ -29,7 +28,13 @@ export function Header() {
       {/* --- Top bar --- */}
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 p-4">
         <Link href="/" className="flex items-center gap-3">
-          <span className="text-xl font-semibold">Squadbuilder</span>
+          <Image
+            src="/squad-builder-logo.png"
+            alt="Squadbuilder logo"
+            width={40}
+            height={40}
+          />
+          <span className="text-xl font-semibold">SquadBuilder</span>
         </Link>
 
         <button

@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Squadbuilder",
+  title: "SquadBuilder",
   description: "Create squads and plan lineups.",
 };
 
@@ -21,9 +21,7 @@ export default function RootLayout({
     <html lang="en" className="h-full antialiased">
       <body className={`${inter.className} min-h-full flex flex-col`}>
         <Header />
-        <div className="mx-auto w-full max-w-7xl flex-1 p-4">
-          {children}
-        </div>
+        <div className="mx-auto w-full max-w-7xl flex-1 p-4">{children}</div>
       </body>
     </html>
   );
