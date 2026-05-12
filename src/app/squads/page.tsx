@@ -16,7 +16,7 @@ export default function SquadsPage() {
 
   return (
     <div className="flex flex-1 flex-col items-center gap-6 py-8">
-      {/* --- Formation selector --- */}
+      {/* Formation selector */}
       <div className="flex flex-col gap-1">
         <span className="text-xs font-medium text-muted">Formation</span>
         <Select
@@ -39,7 +39,7 @@ export default function SquadsPage() {
         </Select>
       </div>
 
-      {/* --- Pitch --- */}
+      {/* Pitch */}
       <Pitch formation={selectedFormation} />
     </div>
   );

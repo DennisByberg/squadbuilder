@@ -6,18 +6,18 @@ import Link from "next/link";
 export default function HomePage() {
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-8 text-center">
-      <div className="flex flex-col items-center gap-3">
-        <Image
-          src="/squad-builder-logo-text.png"
-          alt="Build your perfect squad"
-          width={380}
-          height={0}
-          className="h-auto w-auto"
-          loading="eager"
-          priority
-        />
-      </div>
+      {/* Logo */}
+      <Image
+        src="/squad-builder-logo-text.png"
+        alt="Build your perfect squad"
+        width={380}
+        height={0}
+        className="h-auto w-auto"
+        loading="eager"
+        priority
+      />
 
+      {/* CTA */}
       <Button
         variant="outline"
         nativeButton={false}

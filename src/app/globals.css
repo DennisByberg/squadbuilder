@@ -1,9 +1,11 @@
+/* Imports */
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
+/* Custom theme tokens */
 @theme {
   --color-background: #09090b;
   --color-foreground: #fafafa;
@@ -24,6 +26,7 @@
   --color-pitch-lines: #3f3f46;
 }
 
+/* shadcn theme mappings */
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: var(--font-sans);
@@ -55,6 +58,7 @@
   --radius-xl: calc(var(--radius) * 1.4);
 }
 
+/* shadcn CSS variables */
 :root {
   --background: #09090b;
   --foreground: #fafafa;
@@ -85,6 +89,7 @@
   --sidebar-ring: #3f3f46;
 }
 
+/* Base styles */
 @layer base {
   * {
     @apply border-border outline-ring/50;

@@ -1,8 +1,9 @@
 type MenuIconProps = {
   size?: number;
+  className?: string;
 };
 
-export function MenuIcon({ size = 16 }: MenuIconProps) {
+export function MenuIcon({ size = 16, className }: MenuIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -14,6 +15,7 @@ export function MenuIcon({ size = 16 }: MenuIconProps) {
       strokeWidth={2}
       strokeLinecap="round"
       strokeLinejoin="round"
+      className={className}
     >
       <path d="M4 5h16M4 12h16M4 19h16" />
     </svg>

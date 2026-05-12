@@ -7,10 +7,7 @@ type PitchProps = {
 
 export function Pitch({ formation }: PitchProps) {
   return (
-    <div
-      className="relative mx-auto w-full max-w-sm overflow-hidden rounded-lg border border-border bg-pitch shadow-lg"
-      style={{ aspectRatio: "2/3" }}
-    >
+    <div className="relative mx-auto w-full max-w-sm aspect-2/3 overflow-hidden rounded-lg border border-border bg-pitch shadow-lg">
       {/* Pitch markings */}
       <div className="pointer-events-none absolute inset-0">
         {/* Outer border */}
