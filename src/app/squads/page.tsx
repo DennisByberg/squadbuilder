@@ -29,7 +29,7 @@ export default function SquadsPage() {
           <SelectTrigger className="w-40">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent alignItemWithTrigger={false}>
             {formations.map((f) => (
               <SelectItem key={f.name} value={f.name}>
                 {f.name}
