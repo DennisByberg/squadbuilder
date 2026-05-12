@@ -1,8 +1,8 @@
 "use client";
 
 import { Button } from "@/components/buttons/Button";
+import { LinkButton } from "@/components/buttons/LinkButton";
 import { GoogleIcon } from "@/components/icons/GoogleIcon";
-import { NavLink } from "@/components/navigation/NavLink";
 import { HomeIcon, MenuIcon, UsersIcon, XIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -34,7 +34,6 @@ export function Header() {
             width={40}
             height={40}
           />
-          <span className="text-xl font-semibold">SquadBuilder</span>
         </Link>
 
         <button
@@ -45,7 +44,7 @@ export function Header() {
           aria-expanded={isMenuOpen}
           aria-controls="mobile-navigation"
           onClick={() => setIsMenuOpen((current) => !current)}
-          className="inline-flex cursor-pointer items-center justify-center border border-border p-2 text-foreground hover:bg-surface-hover md:hidden"
+          className="inline-flex cursor-pointer items-center justify-center p-2 text-foreground hover:bg-surface-hover md:hidden"
         >
           {menuIcon}
         </button>
@@ -54,14 +53,15 @@ export function Header() {
         <div className="hidden flex-wrap items-center gap-3 md:flex">
           <nav aria-label="Main navigation" className="flex gap-2">
             {navLinks.map((link) => (
-              <NavLink
+              <LinkButton
                 key={link.href}
                 href={link.href}
+                variant="nav"
                 active={pathname === link.href}
                 icon={link.icon}
               >
                 {link.label}
-              </NavLink>
+              </LinkButton>
             ))}
           </nav>
 
@@ -73,28 +73,28 @@ export function Header() {
       {isMenuOpen ? (
         <div
           id="mobile-navigation"
-          className="border-t border-border md:hidden"
+          className="fixed inset-0 top-18.25 z-50 flex flex-col items-center justify-center gap-8 bg-background md:hidden"
         >
-          <div className="mx-auto flex max-w-7xl flex-col gap-3 p-4">
-            <nav
-              aria-label="Mobile navigation"
-              className="flex flex-col gap-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {navLinks.map((link) => (
-                <NavLink
-                  key={link.href}
-                  href={link.href}
-                  active={pathname === link.href}
-                  icon={link.icon}
-                >
-                  {link.label}
-                </NavLink>
-              ))}
-            </nav>
+          <nav
+            aria-label="Mobile navigation"
+            className="flex w-full flex-col gap-2"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            {navLinks.map((link) => (
+              <LinkButton
+                key={link.href}
+                href={link.href}
+                variant="nav"
+                active={pathname === link.href}
+                icon={link.icon}
+                className="w-full justify-center py-4 text-lg"
+              >
+                {link.label}
+              </LinkButton>
+            ))}
+          </nav>
 
-            <Button icon={<GoogleIcon />}>Sign in with Google</Button>
-          </div>
+          <Button icon={<GoogleIcon />}>Sign in with Google</Button>
         </div>
       ) : null}
     </header>
